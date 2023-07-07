@@ -6,7 +6,9 @@
     <div class="container">
       <h1>The BookShelf</h1>
       <ul>
-        <li></li>
+      {% for book in books: %}
+          <li>{{ book['bookName'] }}-{{ book['authorName'] }}-{{ book['rating'] }}</li>
+      {% endfor %}
       </ul>
 
       <a class="btn btn-primary" href="{{  url_for('add')  }}">Add New Book</a>

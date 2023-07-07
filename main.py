@@ -12,15 +12,19 @@ all_books = []
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', books=all_books)
 
 
 @app.route("/add", methods=['GET', 'POST'])
 def add():
     form = myForm()
+    form_Dict = {}
     if form.validate_on_submit():
         for value in form.data.items():
-            print(value)
+            if value[0] != "csrf_token" and value[0] != "addBook":
+                form_Dict[value[0]] = value[1]
+        all_books.append(form_Dict)
+        return redirect(url_for('home'))
     return render_template('add.html', form=form)
 
 
