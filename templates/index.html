@@ -5,11 +5,16 @@
 
     <div class="container">
       <h1>The BookShelf</h1>
-      <ul>
-      {% for book in books: %}
-          <li>{{ book['bookName'] }}-{{ book['authorName'] }}-{{ book['rating'] }}</li>
-      {% endfor %}
-      </ul>
+      {% if not books: %}
+        <p>Bookshelf is empty.</p>
+      {% else: %}
+         <ul>
+        {% for book in books: %}
+            <li>{{ book['bookName'] }}-{{ book['authorName'] }}-{{ book['rating'] }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+
 
       <a class="btn btn-primary" href="{{  url_for('add')  }}">Add New Book</a>
     </div>
