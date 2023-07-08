@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from db import db, Bookshelf
 from sqlalchemy.exc import SQLAlchemyError
@@ -15,9 +15,12 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # Read data from database table and passover data to index to dispaly
+    bookshelf_Data = Bookshelf.query.all()
+    return render_template('index.html', bookshelf=bookshelf_Data)
 
 
 @app.route("/add", methods=['GET', 'POST'])

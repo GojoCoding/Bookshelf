@@ -5,12 +5,12 @@
 
     <div class="container">
       <h1>The BookShelf</h1>
-      {% if not books: %}
+      {% if not bookshelf: %}
         <p>Bookshelf is empty.</p>
       {% else: %}
          <ul>
-        {% for book in books: %}
-            <li>{{ book['bookName'] }}-{{ book['authorName'] }}-{{ book['rating'] }}</li>
+        {% for book in bookshelf: %}
+            <li>{{ book.title }}-{{ book.author }}-{{ book.rating }}</li>
         {% endfor %}
         </ul>
       {% endif %}
