@@ -10,7 +10,13 @@
       {% else: %}
          <ul>
         {% for book in bookshelf: %}
-            <li>{{ book.title }}-{{ book.author }}-{{ book.rating }}</li>
+            <li><a class="btn btn-outline-danger btn-sm"
+                 style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;"
+                href="{{  url_for('home', id=book.id )  }}">Delete</a>
+              {{ book.title }}-{{ book.author }}-{{ book.rating }}/10
+              <a class="btn btn-outline-info btn-sm"
+                 style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;"
+                href="{{  url_for('edit', id=book.id )  }}">Edit rating</a></li>
         {% endfor %}
         </ul>
       {% endif %}

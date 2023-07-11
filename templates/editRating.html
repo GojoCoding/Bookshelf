@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Edit Rating{% endblock %}
+
+
+{% block content %}
+    <div class="form-container" style="max-width: 500px; margin: 0 auto;">
+        <h1> Book Name: {{ book.title }} </h1>
+        <h3> Current Rating: {{ book.rating }}</h3>
+         <form action="{{ url_for('edit') }}" method="POST">
+             <input hidden="hidden" name="id" value="{{book.id}}">
+             <input name="rating" type="text" placeholder="New Rating">
+             <button type="submit">Change Rating</button>
+         </form>
+    </div>
+
+{% endblock %}

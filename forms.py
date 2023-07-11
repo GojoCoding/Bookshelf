@@ -10,3 +10,8 @@ class myForm(FlaskForm):
     addBook = SubmitField(label="Add Book")
 
 
+class ratingsForm(FlaskForm):
+    newRating = StringField(validators=[DataRequired()])
+    change_Rating = SubmitField(label="Change Rating")
+
+
