@@ -16,13 +16,8 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET"])
 def home():
-    if request.method == "POST":
-        book_ID = request.args.get("id")
-        book_Selected = db.get_or_404(Bookshelf, book_ID)
-
-    # Read data from database table and passover data to index to dispaly
     bookshelf_Data = Bookshelf.query.all()
     return render_template('index.html', bookshelf=bookshelf_Data)
 
@@ -62,6 +57,14 @@ def edit():
     book_ID = request.args.get('id')
     book_selected = db.get_or_404(Bookshelf, book_ID)
     return render_template('editRating.html', book=book_selected)
+
+
+@app.route('/delete/<int:book_id>', methods=["POST"])
+def delete(book_id):
+    book_Selected = db.get_or_404(Bookshelf, book_id)
+    db.session.delete(book_Selected)
+    db.session.commit()
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":

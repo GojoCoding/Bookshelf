@@ -10,9 +10,11 @@
       {% else: %}
          <ul>
         {% for book in bookshelf: %}
-            <li><a class="btn btn-outline-danger btn-sm"
-                 style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;"
-                href="{{  url_for('home', id=book.id )  }}">Delete</a>
+            <li><form action="{{ url_for('delete', book_id=book.id) }}" method="POST" style="display: inline;">
+                  <button class="btn btn-outline-danger btn-sm"
+                  style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;"
+                  type="submit">Delete</button>
+                </form>
               {{ book.title }}-{{ book.author }}-{{ book.rating }}/10
               <a class="btn btn-outline-info btn-sm"
                  style="--bs-btn-padding-y: .05rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .75rem;"
